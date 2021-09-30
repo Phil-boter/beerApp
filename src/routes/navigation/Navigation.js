@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./navigation.css";
 
-export default function Navigation({ auth }) {
+export default function Navigation({ auth, local }) {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -16,6 +16,11 @@ export default function Navigation({ auth }) {
     };
     const style3 = {
         transform: "rotate(-45deg) translate(7.5px, -5px)",
+    };
+
+    const handleLogout = () => {
+        window.localStorage.clear();
+        closeMobileMenu();
     };
 
     return (
@@ -35,22 +40,36 @@ export default function Navigation({ auth }) {
                             Hops
                         </Link>
                     </li>
-                    <li className="option" onClick={closeMobileMenu}>
-                        <Link to="/login" className="bg_slider link">
-                            Sign In
-                        </Link>
-                    </li>
-                    <li className="option" onClick={closeMobileMenu}>
-                        <Link to="/registration" className="bg_slider link">
-                            Sign Up
-                        </Link>
-                    </li>
-                    {auth && auth.isLoggedIn === true ? (
-                        <li className="option" onClick={closeMobileMenu}>
-                            <Link to="/user" className="bg_slider link">
-                                Profile
-                            </Link>
-                        </li>
+                    {local && local.isLoggedIn !== true ? (
+                        <>
+                            <li className="option" onClick={closeMobileMenu}>
+                                <Link to="/login" className="bg_slider link">
+                                    SignIN
+                                </Link>
+                            </li>
+                            <li className="option" onClick={closeMobileMenu}>
+                                <Link
+                                    to="/registration"
+                                    className="bg_slider link"
+                                >
+                                    SignUP
+                                </Link>
+                            </li>
+                        </>
+                    ) : null}
+                    {local && local.isLoggedIn === true ? (
+                        <>
+                            <li className="option" onClick={closeMobileMenu}>
+                                <Link to="/user" className="bg_slider link">
+                                    Profile
+                                </Link>
+                            </li>
+                            <li className="option" onClick={handleLogout}>
+                                <a href="/" className="bg_slider link">
+                                    SignOUT
+                                </a>
+                            </li>
+                        </>
                     ) : null}
                 </ul>
             </div>

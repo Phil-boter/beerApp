@@ -42,7 +42,7 @@
     grid-gap: 50px;
     list-style-type: none;
 }
-.mobile-option {
+.option .mobile-option {
     display: none;
 }
 .option a {

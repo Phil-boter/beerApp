@@ -10,6 +10,10 @@ export async function login(email, password) {
             password: password,
         });
         if (res.status === 200) {
+            localStorage.setItem(
+                "auth",
+                JSON.stringify({ isLoggedIn: true, userId: res.data.userId })
+            );
             return {
                 type: POST_LOGIN,
                 userId: res.data.userId,
@@ -36,6 +40,10 @@ export async function registration(first, last, email, password) {
             password: password,
         });
         if (res.status === 200) {
+            localStorage.setItem(
+                "auth",
+                JSON.stringify({ isLoggedIn: true, userId: res.data.userId })
+            );
             return {
                 type: ADD_USER,
                 userId: res.data.userId,

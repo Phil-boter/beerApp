@@ -19,14 +19,28 @@ export default function App() {
     console.log("auth", auth);
 
     const [visible, setIsVisible] = useState(false);
+    const [logged, setAuthenticated] = useState(false);
+    const [local, setStorage] = useState({});
 
-    // useEffect(() => {
-    //     dispatch(getUser(auth.userId));
-    // }, [auth, dispatch]);
+    console.log("local", local);
+    function getAdminDataFromLocalStorage() {
+        const data = JSON.parse(localStorage.getItem("auth"));
+        if (data) {
+            console.log("loacl", data);
+            setAuthenticated(true);
+            setStorage(data);
+        } else {
+            return;
+        }
+    }
+
+    useEffect(() => {
+        getAdminDataFromLocalStorage();
+    }, [auth]);
 
     return (
         <BrowserRouter>
-            <Navigation auth={auth} />
+            <Navigation auth={auth} local={local} />
             <Switch>
                 <Route
                     exact
@@ -44,7 +58,7 @@ export default function App() {
                 <Route path="/beer" render={() => <Beer />} />
                 <Route path="/hop" render={() => <Hop />} />
                 <Route path="/registration" render={() => <Registration />} />
-                {!auth.isLoggedIn ? (
+                {!auth.isLoggedIn || local.isLoggedIn !== true ? (
                     <Redirect to="/" />
                 ) : (
                     <Route
