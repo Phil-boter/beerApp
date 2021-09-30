@@ -11,8 +11,11 @@ import Hop from "./routes/hops/Hop";
 import Navigation from "./routes/navigation/Navigation";
 
 import "./App.css";
+import { getUser } from "./redux/actions/userActions";
 
 export default function App() {
+    const dispatch = useDispatch();
+
     const auth = useSelector((state) => {
         return state.auth;
     });
@@ -36,7 +39,8 @@ export default function App() {
 
     useEffect(() => {
         getAdminDataFromLocalStorage();
-    }, [auth]);
+        dispatch(getUser(local.userId));
+    }, [auth, dispatch, logged, local.userId]);
 
     return (
         <BrowserRouter>
@@ -58,7 +62,7 @@ export default function App() {
                 <Route path="/beer" render={() => <Beer />} />
                 <Route path="/hop" render={() => <Hop />} />
                 <Route path="/registration" render={() => <Registration />} />
-                {!auth.isLoggedIn || local.isLoggedIn !== true ? (
+                {local.isLoggedIn !== true ? (
                     <Redirect to="/" />
                 ) : (
                     <Route
