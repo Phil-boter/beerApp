@@ -1,0 +1,49 @@
+:root {
+    --var-color_one: #0ff;
+    --var-color_two: #030303;
+    --var-color_three: #ffffee;
+    --var-color_gray: rgb(247, 247, 247);
+    --var-color_green: #00ff96;
+    --var-color_white: white;
+    --var-color_black: black;
+    --var-color_projectHeader: rgb(218, 38, 205);
+    --var-color_headline: yellow;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat;
+    list-style: none;
+    font-size: 16px;
+}
+
+.body-main-container {
+    background-color: var(--var-color_gray);
+    max-width: 1980px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgb(240, 240, 240);
+}
+button {
+    border: 3px solid black;
+    background-color: transparent;
+    text-decoration: none;
+    width: 10rem;
+    text-align: center;
+    padding: 0.3rem;
+    font-weight: 800;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+button:hover {
+    color: var(--var-color_white);
+    background-color: black;
+}
+.bg-active {
+    background-color: yellow;
+}

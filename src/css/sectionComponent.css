@@ -1,0 +1,46 @@
+.section {
+    /* border: 1px solid yellow; */
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about,
+.section-contact {
+    background-color: var(--var-color_white);
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0rem 2rem;
+    max-height: 25vh;
+}
+
+.link-github {
+    color: rgb(199, 0, 0);
+    /* text-shadow: 0.2px 0.2px 0.2px black; */
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-linkedIn {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-cv {
+    color: rgb(0, 109, 109);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-mailto {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+}
+@media only screen and (max-width: 680px) {
+    .about,
+    .section-contact {
+        padding: 25rem 2rem;
+        height: 65vh;
+    }
+}

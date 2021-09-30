@@ -1,0 +1,102 @@
+{
+    "name": "basic",
+    "version": "0.1.0",
+    "private": true,
+    "main": "server.js",
+    "dependencies": {
+        "@react-three/a11y": "^2.1.0",
+        "@react-three/drei": "^7.0.6",
+        "@react-three/fiber": "^7.0.2",
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.6",
+        "@testing-library/user-event": "^12.8.3",
+        "alert": "^5.0.10",
+        "aws-sdk": "^2.891.0",
+        "axios": "^0.21.1",
+        "bcryptjs": "^2.4.3",
+        "bootstrap": "^5.1.1",
+        "camera-controls": "^1.32.3",
+        "compression": "^1.7.4",
+        "concurrently": "^6.0.2",
+        "cookie-session": "^1.4.0",
+        "cors": "^2.8.5",
+        "crypto-random-string": "^2.0.0",
+        "csurf": "^1.11.0",
+        "dotenv": "^8.2.0",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6",
+        "enzyme-to-json": "^3.6.2",
+        "eslint": "^7.32.0",
+        "eslint-plugin-react": "^7.26.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^3.6.6",
+        "mongoose": "^6.0.8",
+        "multer": "^1.4.2",
+        "node-fetch": "^2.6.1",
+        "nodemon": "^2.0.7",
+        "path": "^0.12.7",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.4",
+        "react-router": "^5.2.0",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "reactstrap": "^8.10.0",
+        "redux": "^4.1.0",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-promise": "^0.6.0",
+        "redux-thunk": "^2.3.0",
+        "three": "^0.130.0",
+        "troika-three-text": "^0.42.0",
+        "uid-safe": "^2.1.5",
+        "web-vitals": "^1.1.1"
+    },
+    "scripts": {
+        "dev:client": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --watch",
+        "eject": "react-scripts eject",
+        "dev:server": "nodemon --watch server server/server.js",
+        "start": "node server/server.js",
+        "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+        "heroku-postbuild": "npm install --npm run build"
+    },
+    "proxy": "http://localhost:5000",
+    "engines": {
+        "node": "15.13.0"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "peerDependencies": {
+        "react-spring": "^8.0.27"
+    },
+    "jest": {
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ],
+        "collectCoverageFrom": [
+            "src/**/*.js",
+            "!src/index.js"
+        ],
+        "coverageReporters": [
+            "text"
+        ]
+    }
+}
