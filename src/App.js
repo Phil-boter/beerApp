@@ -8,6 +8,9 @@ import Registration from "./routes/auth/Registration";
 import User from "./routes/user/User";
 import Beer from "./routes/beers/Beer";
 import Hop from "./routes/hops/Hop";
+import Navigation from "./routes/navigation/Navigation";
+
+import "./App.css";
 
 export default function App() {
     const auth = useSelector((state) => {
@@ -23,6 +26,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
+            <Navigation auth={auth} />
             <Switch>
                 <Route
                     exact

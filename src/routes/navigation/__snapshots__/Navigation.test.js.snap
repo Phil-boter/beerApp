@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render Loginu component correctly 1`] = `
+exports[`App should render Beer component correctly 1`] = `
 <ContextProvider
   value={
     Object {
@@ -24,6 +24,6 @@ exports[`App should render Loginu component correctly 1`] = `
     }
   }
 >
-  <Login />
+  <Navigation />
 </ContextProvider>
 `;

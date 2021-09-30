@@ -1,15 +1,13 @@
 import React from "react";
-
 import { shallow } from "enzyme";
-// import toJson from "enzyme-to-json";
-
-import Beer from "./Beer";
 import { Provider } from "react-redux";
 import store from "../../redux/store";
 
+import Navigation from "./Navigation";
+
 let wrapped = shallow(
     <Provider store={store}>
-        <Beer />
+        <Navigation />
     </Provider>
 );
 describe("App", () => {
@@ -17,8 +15,12 @@ describe("App", () => {
         expect(wrapped).toMatchSnapshot();
     });
     it("should have a title", () => {
-        const wrapper = shallow(<h1>BeerComponent</h1>);
-        expect(wrapper.text()).toEqual("BeerComponent");
+        const wrapper = shallow(
+            <div>
+                <a href="/">BEERAPP</a>
+            </div>
+        );
+        expect(wrapper.text().includes("BEERAPP")).toBe(true);
     });
     it("should have a ul list", () => {
         const wrapper = shallow(<ul></ul>);

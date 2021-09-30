@@ -97,7 +97,7 @@ export default function Registration() {
                         (firstName.length < 1,
                         lastName.length < 1,
                         email.length < 1,
-                        password.length < 1)
+                        password.length < 6)
                     }
                     className="toggle-button login"
                     onClick={(e) => Register(e)}

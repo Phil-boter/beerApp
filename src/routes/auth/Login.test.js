@@ -13,10 +13,36 @@ let wrapped = shallow(
     </Provider>
 );
 describe("App", () => {
-    it("should render App component correctly", () => {
+    const input = { email: "test@test.com", password: "1234" };
+    it("should render Loginu component correctly", () => {
         expect(wrapped).toMatchSnapshot();
     });
-    // it("should have a title", () => {
-    //     expect(wrapped.find("h1").text()).toEqual("hello World");
-    // });
+    it("should have an input with value email", () => {
+        const email = shallow(
+            <div>
+                <input
+                    type="text"
+                    name="email"
+                    autoComplete="email"
+                    placeholder="Email"
+                ></input>
+            </div>
+        );
+        email.value = input.email;
+        expect(email.value).toEqual("test@test.com");
+    });
+    it("should have an input with value password", () => {
+        const password = shallow(
+            <div>
+                <input
+                    type="password"
+                    name="password"
+                    autoComplete="password"
+                    placeholder="Password"
+                ></input>
+            </div>
+        );
+        password.value = input.password;
+        expect(password.value).toEqual("1234");
+    });
 });

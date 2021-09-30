@@ -11,9 +11,6 @@ const wakeUpDyno = require("./middleware/wakeUpDyno");
 // const alert = require("alert");
 
 const app = express();
-
-const items = require("./routes/api/items");
-const projects = require("./routes/api/projects");
 const user = require("./routes/api/user");
 const auth = require("./routes/api/auth");
 const beer = require("./routes/api/beer");
@@ -72,8 +69,6 @@ app.options("*", cors()); // include before other routes
 
 app.use(user);
 app.use(auth);
-app.use(items);
-app.use(projects);
 app.use(hop);
 app.use(beer);
 
