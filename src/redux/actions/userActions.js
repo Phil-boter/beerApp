@@ -74,17 +74,3 @@ export async function uploadProfilePic(url, id) {
         };
     }
 }
-// const res = await instance.post("/api/user/uploadProfilePic", {
-//     id: id,
-//     image: image,
-// });
-// if (res.status === 200) {
-//     console.log("res in get user", res);
-//     return {
-//         type: UPDATE_USER,
-//         success: res.data.success,
-//         userId: res.data.userId,
-//         user: res.data.user,
-//         userError: false,
-//     };
-// }

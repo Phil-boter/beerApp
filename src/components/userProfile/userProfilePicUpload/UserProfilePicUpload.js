@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { uploadProfilePic } from "../../../redux/actions/userActions";
+import ProgressBar from "../../progressBar/Progressbar";
 
 import "./style.css";
 
@@ -15,22 +16,6 @@ import {
 } from "firebase/storage";
 
 const storage = getStorage();
-
-function ProgressBar({ width, percent }) {
-    const [value, setValue] = useState(0);
-
-    useEffect(() => {
-        setValue(percent * width);
-    }, [value, setValue, width, percent]);
-
-    return (
-        <div>
-            <div className="progress-div" style={{ width: width }}>
-                <div style={{ width: `${value}px` }} className="progress" />
-            </div>
-        </div>
-    );
-}
 
 export default function UserProfilePicUpload({
     user,
@@ -56,8 +41,6 @@ export default function UserProfilePicUpload({
     };
 
     const handleImageUpload = async (e) => {
-        console.log("image", image);
-
         e.preventDefault();
         if (!image.name) {
             console.log("no image");
