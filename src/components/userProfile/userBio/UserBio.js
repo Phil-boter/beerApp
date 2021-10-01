@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import instance from "../../axios";
-import { updateBio } from "../../redux/actions/userActions";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateBio } from "../../../redux/actions/userActions";
 
 export default function UserBio({ user }) {
     const dispatch = useDispatch();
@@ -18,15 +17,12 @@ export default function UserBio({ user }) {
     };
 
     const uploadBio = () => {
-        console.log("click uploadBio");
-        console.log("bio for uploadBio", bio, user.userId);
         dispatch(updateBio(bio, user.userId));
         setIsVisible(false);
         setBio("");
     };
 
     const renderEditor = () => {
-        console.log("state textarea", visible);
         if (!visible) {
             if (user.user.bio) {
                 return (
@@ -76,10 +72,6 @@ export default function UserBio({ user }) {
             );
         }
     };
-
-    useEffect(() => {
-        renderEditor();
-    }, [user, dispatch]);
 
     return <>{renderEditor()}</>;
 }

@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     bio: {
         type: String,
     },
+    image: { type: String },
     register_date: {
         type: Date,
         default: Date.now,

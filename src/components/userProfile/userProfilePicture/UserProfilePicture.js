@@ -1,23 +1,20 @@
-export default function UserProfilePic({
-    user,
-    setIsVisible,
-    visible,
-    toggleUploader,
-}) {
+import "./style.css";
+
+export default function UserProfilePic({ user, toggleUploader }) {
     return (
         <>
-            {user.image ? (
+            {user.user.image ? (
                 <img
                     id="img"
-                    src={user.image}
+                    src={user.user.image}
                     onClick={(e) => toggleUploader(e)}
-                    alt={`${user.first_name} ${user.last_name}`}
+                    alt={`${user.user.first_name} ${user.user.last_name}`}
                     data-testid="profile-pic"
                 />
             ) : (
                 <img
                     id="img"
-                    src="/"
+                    src="/assets/dolde2.png"
                     onClick={(e) => toggleUploader(e)}
                     alt="default"
                     data-testid="profile-pic"

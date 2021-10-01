@@ -14,6 +14,7 @@ const User = require("../../models/User");
 router.get("/api/user/:id", (req, res) => {
     console.log("get user");
     const { id } = req.params;
+    console.log("id in get user", id);
     if (!req.params.id) {
         return res.status(400).json({ success: false });
     }

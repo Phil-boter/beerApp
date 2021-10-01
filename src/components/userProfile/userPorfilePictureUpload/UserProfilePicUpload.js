@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import fileUpload from "../../Firebase/methods";
-import { uploadProfilePic } from "../../redux/actions/userActions";
+import { uploadProfilePic } from "../../../redux/actions/userActions";
 
 import {
     getStorage,
@@ -14,7 +13,6 @@ const storage = getStorage();
 
 export default function UserProfilePicUpload({
     user,
-    setIsVisible,
     visible,
     toggleUploader,
 }) {
@@ -63,10 +61,10 @@ export default function UserProfilePicUpload({
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log("File available at", downloadURL);
                     url = downloadURL;
+                    dispatch(uploadProfilePic(url, user.userId));
                 });
             }
         );
-        await dispatch(uploadProfilePic(url, user.userId));
         resetForm(e);
     };
 

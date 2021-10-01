@@ -56,12 +56,17 @@ export async function updateBio(bio, id) {
 
 export async function uploadProfilePic(url, id) {
     try {
-        console.log(url, id);
         const res = await instance.post("/api/user/uploadUserPicture", {
             id: id,
             image: url,
         });
-        console.log(res);
+        return {
+            type: UPDATE_USER,
+            success: res.data.success,
+            userId: res.data.userId,
+            user: res.data.user,
+            userError: false,
+        };
     } catch (error) {
         return {
             type: USER_ERROR,

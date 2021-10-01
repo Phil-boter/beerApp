@@ -12,12 +12,6 @@ import Navigation from "./routes/navigation/Navigation";
 
 import "./App.css";
 
-// -------Inintializing fireBase--------------
-import app from "./Firebase/config";
-// -------Inintializing fireBase--------------
-
-import { getUser } from "./redux/actions/userActions";
-
 export default function App() {
     const dispatch = useDispatch();
 
@@ -41,7 +35,6 @@ export default function App() {
 
     useEffect(() => {
         getAdminDataFromLocalStorage();
-        dispatch(getUser(local.userId));
     }, [auth, dispatch, logged, local.userId]);
 
     return (
@@ -73,6 +66,8 @@ export default function App() {
                             <User
                                 setIsVisible={setIsVisible}
                                 visible={visible}
+                                local={local}
+                                auth={auth}
                             />
                         )}
                     />

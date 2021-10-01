@@ -1,0 +1,12 @@
+#img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+@media only screen and (max-widht: 650px) {
+    #img {
+        width: 60px;
+        height: 60px;
+    }
+}

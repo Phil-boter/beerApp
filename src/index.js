@@ -5,6 +5,9 @@ import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 // import "bootstrap/dist/css/bootstrap.css";
 
+// -------Inintializing fireBase--------------
+import app from "./Firebase/config";
+// -------Inintializing fireBase--------------
 let elem = (
     <Provider store={store}>
         <App />

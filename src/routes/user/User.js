@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import UserBio from "../../components/userProfile/UserBio";
-import UserProfilePic from "../../components/userProfile/UserProfilePicture";
-import UserProfilePicUpload from "../../components/userProfile/UserProfilePicUpload";
+import UserBio from "../../components/userProfile/userBio/UserBio";
+import UserProfilePic from "../../components/userProfile/userProfilePicture/UserProfilePicture";
+import UserProfilePicUpload from "../../components/userProfile/userProfilePicUpload/UserProfilePicUpload";
 
 import { getUser } from "../../redux/actions/userActions";
 
-export default function User() {
+export default function User({ auth, local }) {
     const dispatch = useDispatch();
     const user = useSelector((state) => {
         return state.user;
@@ -15,7 +15,10 @@ export default function User() {
     const [visible, setIsVisible] = useState(false);
 
     if (user.user === undefined) {
-        dispatch(getUser(user.userId));
+        console.log(user.userId);
+        console.log("auth", auth.userId);
+        console.log("local", local.userId);
+        dispatch(getUser(local.userId));
         return <p>Loading</p>;
     }
 
