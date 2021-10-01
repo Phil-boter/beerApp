@@ -4,6 +4,7 @@ import {
     DELETE_USER,
     USER_ERROR,
     GET_USER,
+    UPDATE_USER,
 } from "../actions/types";
 
 const initialState = {
@@ -23,6 +24,15 @@ export default function reducer(state = initialState, action) {
             };
 
         case GET_USER: {
+            return {
+                ...state,
+                success: action.success,
+                userId: action.userId,
+                user: action.user,
+                userError: action.userError,
+            };
+        }
+        case UPDATE_USER: {
             return {
                 ...state,
                 success: action.success,

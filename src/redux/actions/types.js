@@ -3,6 +3,7 @@ export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const USER_ERROR = "USER_ERROR";
+export const UPDATE_USER = "UPDATE_USER";
 
 export const POST_LOGIN = "POST_LOGIN";
 export const POST_LOGOUT = "POST_LOGOUT";

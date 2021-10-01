@@ -12,8 +12,8 @@ let wrapped = shallow(
         <Hop />
     </Provider>
 );
-describe("App", () => {
-    it("should render App component correctly", () => {
+describe("HOP", () => {
+    it("should render Hop route correctly", () => {
         expect(wrapped).toMatchSnapshot();
     });
     it("should have a table with title bitterhoips", () => {

@@ -11,6 +11,11 @@ import Hop from "./routes/hops/Hop";
 import Navigation from "./routes/navigation/Navigation";
 
 import "./App.css";
+
+// -------Inintializing fireBase--------------
+import app from "./Firebase/config";
+// -------Inintializing fireBase--------------
+
 import { getUser } from "./redux/actions/userActions";
 
 export default function App() {
@@ -19,17 +24,14 @@ export default function App() {
     const auth = useSelector((state) => {
         return state.auth;
     });
-    console.log("auth", auth);
 
     const [visible, setIsVisible] = useState(false);
     const [logged, setAuthenticated] = useState(false);
     const [local, setStorage] = useState({});
 
-    console.log("local", local);
     function getAdminDataFromLocalStorage() {
         const data = JSON.parse(localStorage.getItem("auth"));
         if (data) {
-            console.log("loacl", data);
             setAuthenticated(true);
             setStorage(data);
         } else {

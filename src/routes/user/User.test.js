@@ -13,7 +13,7 @@ let wrapped = shallow(
     </Provider>
 );
 describe("App", () => {
-    it("should render App component correctly", () => {
+    it("should render User component correctly", () => {
         expect(wrapped).toMatchSnapshot();
     });
     // it("should have a title", () => {

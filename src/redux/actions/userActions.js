@@ -1,13 +1,18 @@
 import instance from "../../axios";
+import fileUpload from "../../Firebase/methods";
 
-import { GET_ALL_USERS, DELETE_USER, USER_ERROR, GET_USER } from "./types";
+import {
+    GET_ALL_USERS,
+    DELETE_USER,
+    USER_ERROR,
+    GET_USER,
+    UPDATE_USER,
+} from "./types";
 
 export async function getUser(id) {
-    console.log("id", id);
     try {
         const res = await instance.get(`/api/user/${id}`);
         if (res.status === 200) {
-            console.log("res in get user", res);
             return {
                 type: GET_USER,
                 success: res.data.success,
@@ -24,3 +29,57 @@ export async function getUser(id) {
         };
     }
 }
+
+export async function updateBio(bio, id) {
+    try {
+        const res = await instance.post("/api/user/bioUpload", {
+            bio: bio,
+            id: id,
+        });
+        if (res.status === 200) {
+            return {
+                type: UPDATE_USER,
+                success: res.data.success,
+                userId: res.data.userId,
+                user: res.data.user,
+                userError: false,
+            };
+        }
+    } catch (error) {
+        console.log("error in get admin");
+        return {
+            type: USER_ERROR,
+            userError: true,
+        };
+    }
+}
+
+export async function uploadProfilePic(url, id) {
+    try {
+        console.log(url, id);
+        const res = await instance.post("/api/user/uploadUserPicture", {
+            id: id,
+            image: url,
+        });
+        console.log(res);
+    } catch (error) {
+        return {
+            type: USER_ERROR,
+            userError: true,
+        };
+    }
+}
+// const res = await instance.post("/api/user/uploadProfilePic", {
+//     id: id,
+//     image: image,
+// });
+// if (res.status === 200) {
+//     console.log("res in get user", res);
+//     return {
+//         type: UPDATE_USER,
+//         success: res.data.success,
+//         userId: res.data.userId,
+//         user: res.data.user,
+//         userError: false,
+//     };
+// }
