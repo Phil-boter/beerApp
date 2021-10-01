@@ -14,10 +14,10 @@ export default function User({ auth, local }) {
 
     const [visible, setIsVisible] = useState(false);
 
-    if (user.user === undefined) {
-        console.log(user.userId);
-        console.log("auth", auth.userId);
-        console.log("local", local.userId);
+    if (user.userId === null) {
+        // console.log(user.userId);
+        // console.log("auth", auth.userId);
+        // console.log("local", local.userId);
         dispatch(getUser(local.userId));
         return <p>Loading</p>;
     }

@@ -32,7 +32,7 @@ export default function UserBio({ user }) {
                         <button
                             className="edit-button"
                             onClick={() => editBio()}
-                            data-testid="edit-button"
+                            data-testid="edit"
                         >
                             Edit
                         </button>
@@ -44,7 +44,7 @@ export default function UserBio({ user }) {
                         <p>Tell us something about yourself</p>
                         <button
                             className="edit-button"
-                            data-testid="upload-button"
+                            data-testid="add"
                             onClick={() => editBio()}
                         >
                             Add your bio now

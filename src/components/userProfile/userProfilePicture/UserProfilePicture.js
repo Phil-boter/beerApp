@@ -3,7 +3,7 @@ import "./style.css";
 export default function UserProfilePic({ user, toggleUploader }) {
     return (
         <>
-            {user.user.image ? (
+            {user && user.user.image ? (
                 <img
                     id="img"
                     src={user.user.image}
@@ -13,11 +13,11 @@ export default function UserProfilePic({ user, toggleUploader }) {
                 />
             ) : (
                 <img
+                    className="default"
                     id="img"
                     src="/assets/dolde2.png"
                     onClick={(e) => toggleUploader(e)}
                     alt="default"
-                    data-testid="profile-pic"
                 />
             )}
         </>

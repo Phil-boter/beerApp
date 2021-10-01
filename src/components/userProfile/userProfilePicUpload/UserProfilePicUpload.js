@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { uploadProfilePic } from "../../../redux/actions/userActions";
+
+import "./style.css";
 
 // -------Inintializing fireBase--------------
 import app from "../../../Firebase/config";
@@ -14,27 +16,58 @@ import {
 
 const storage = getStorage();
 
+function ProgressBar({ width, percent }) {
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        setValue(percent * width);
+    }, [value, setValue, width, percent]);
+
+    return (
+        <div>
+            <div className="progress-div" style={{ width: width }}>
+                <div style={{ width: `${value}px` }} className="progress" />
+            </div>
+        </div>
+    );
+}
+
 export default function UserProfilePicUpload({
     user,
     visible,
     toggleUploader,
+    setIsVisible,
 }) {
     const dispatch = useDispatch();
 
-    const [image, setImage] = useState({});
-    const [error, setError] = useState(false);
+    let [image, setImage] = useState({});
+    const [error, setError] = useState({
+        error: false,
+        message: "That didn't work!",
+    });
+    const [percent, setProgress] = useState(0);
 
     const handleFileChange = (e) => {
         e.preventDefault();
         let fileInput = document.getElementById("file");
-        const image = fileInput.files[0];
-        image["id"] = Math.random();
-        setImage(image);
+        const pic = fileInput.files[0];
+        pic["id"] = Math.random();
+        setImage(pic);
     };
 
     const handleImageUpload = async (e) => {
-        let url = "";
+        console.log("image", image);
+
         e.preventDefault();
+        if (!image.name) {
+            console.log("no image");
+            setError({ error: true, message: "please select an image" });
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+            return;
+        }
+
         const storageRef = ref(storage, "images/" + image.id);
         const uploadTask = uploadBytesResumable(storageRef, image);
 
@@ -46,6 +79,7 @@ export default function UserProfilePicUpload({
                 const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log("Upload is " + progress + "% done");
+                setProgress(progress);
                 // eslint-disable-next-line default-case
                 switch (snapshot.state) {
                     case "paused":
@@ -62,20 +96,22 @@ export default function UserProfilePicUpload({
             () => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    url = downloadURL;
-                    dispatch(uploadProfilePic(url, user.userId));
+                    dispatch(uploadProfilePic(downloadURL, user.userId));
                 });
+                resetForm(e);
             }
         );
-        resetForm(e);
     };
 
     const resetForm = (e) => {
         e.preventDefault();
         document.getElementById("upload-form").reset();
         console.log("reset");
-        setImage({});
-        toggleUploader(e);
+
+        setTimeout(() => {
+            setProgress(0);
+            toggleUploader();
+        }, 1500);
     };
 
     return (
@@ -93,15 +129,18 @@ export default function UserProfilePicUpload({
                             id="file"
                             accept="image/*"
                         ></input>
-                        <button onClick={(e) => handleImageUpload(e)}>
+                        <button
+                            onClick={(e) => handleImageUpload(e)}
+                            disabled={image === {}}
+                        >
                             Upload
                         </button>
+                        <ProgressBar width={400} percent={percent} />
                     </form>
                 </div>
             ) : null}
-            {error && error === true ? (
-                <p>Sorry that didn't work! Please try again later!</p>
-            ) : null}
+
+            {error && error.error === true ? <p>{error.message}</p> : null}
         </>
     );
 }

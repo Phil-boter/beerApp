@@ -3,6 +3,7 @@
     height: 10rem;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid black;
 }
 @media only screen and (max-widht: 650px) {
     #img {
